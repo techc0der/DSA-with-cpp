@@ -19,7 +19,7 @@ public:
             else if(nums[last]==target){
                 return last;
             }
-            else if(nums[start]<target<nums[last]){
+            else         if(nums[start]<target<nums[last]){
                 return start+1;
             }
             else{
