@@ -6,23 +6,30 @@ struct ListNode{
 class Solution {
 public:
 
-    Solution(){
-        
-    }
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    int searchInsert(vector<int>& nums, int target) {
+        int start=0,last=1;
 
-        ListNode *l;
-        ListNode *temp1=l1,*temp2=l2;
-        while(temp1!=NULL && temp2!=NULL){
-            l->val=temp1->val+temp2->val;
-            if(temp1->val+temp2->val>=10){
-                int i;
-                i=temp1->val+temp2->val-10;
-                temp1->next->val+=1
+        for(int i=0;i<=nums.size()-1;i++){
+            if(i==nums.size()-1){
+                return target-nums[start]+start;
             }
-            temp1=temp1->next;
-            temp2=temp2->next;
+            else if(nums[start]==target){
+                return start;
+            }
+            else if(nums[last]==target){
+                return last;
+            }
+            else if(nums[start]<target<nums[last]){
+                return start+1;
+            }
+            else{
+                start++;
+                last++;
+            }
+            
+
         }
-        return l;
+
+     return -1;   
     }
 };
