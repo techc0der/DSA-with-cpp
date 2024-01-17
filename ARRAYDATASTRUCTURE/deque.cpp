@@ -13,6 +13,7 @@ class deque
 private:
     node *front,*rear;
 public:
+
     deque();
     ~deque();
     void insert(int,char);
