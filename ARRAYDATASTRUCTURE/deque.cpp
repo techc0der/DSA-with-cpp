@@ -21,7 +21,7 @@ public:
     void deleterear();
 };
 
-deque::deque(/* args */)
+deque::deque()
 {
     front=NULL;
     rear=NULL;
@@ -41,6 +41,7 @@ void deque::insert(int data,char check)
     {   
         front->previos=n; 
         n->next=front;
+        n->previos=NULL;
         front=n;
     }
 
@@ -54,7 +55,6 @@ void deque::insert(int data,char check)
 
 void deque::deletefront()
 {
-    node *n=new node;
     if (!front)
     {
         cout<<"\nit is empty";
@@ -64,14 +64,16 @@ void deque::deletefront()
     {
         if (rear==front)
         {
-            rear=NULL;
+            delete front;
+            front=rear=NULL;
         }
-        
+        else{
+        node *n=new node;
         n=front;
-        front->item=NULL;
         front=front->next;
         front->previos=NULL;
-        n->next=NULL;
+        delete n;
+        }
 
     }
     
@@ -79,7 +81,6 @@ void deque::deletefront()
 
 void deque::deleterear()
 {
-    node *n=new node;
     if (!rear)
     {
         cout<<"\nit is empty";
@@ -89,15 +90,17 @@ void deque::deleterear()
     {
         if (rear==front)
         {
+            delete rear;
             front=NULL;
+            rear=NULL;
         }
-        
-        n=rear;
-        rear->item=NULL;
-        rear=rear->previos;
-        n->next=NULL;
-        n->previos=NULL;
-        rear->next=NULL;
+        else{
+            node *n=new node;
+            n=rear;
+            rear=rear->previos;
+            rear->next=NULL;
+            delete n;
+        }
 
     }
     
